@@ -3,7 +3,7 @@
 Shift-invariant repetition penalty logits processors for HuggingFace Transformers.
 
 ```bash
-pip install normalized-repetition-penalty
+pip install git+https://github.com/captainpete/normalized-repetition-penalty
 ```
 
 ```python
