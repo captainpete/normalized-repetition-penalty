@@ -73,12 +73,13 @@ The penalty is applied identically whether the chain is on logits or log-probs, 
 
 ## Status
 
-This is the standalone form of
-[huggingface/transformers#48642](https://github.com/huggingface/transformers/pull/48642).
-It is verified against that branch's `normalize=True` implementation (tests in `tests/`) and
-against the paper's gauge-probe harness: run through `generate()` on gpt2 with the processor
-passed via `logits_processor=`, the output streams agree token-for-token with the paper's
-stored `fix` streams under ±5 logit shifts.
+[huggingface/transformers#48642](https://github.com/huggingface/transformers/pull/48642) proposed
+this as an opt-in flag in core. It was closed (2026-10-20) with the guidance that new sampling
+variants are best shared as a custom logits processor, which is what this package is. The
+implementation is verified against that PR's `normalize=True` processors (tests in `tests/`,
+bit-identical on CPU and CUDA) and against the paper's gauge-probe harness: run through
+`generate()` on gpt2 with the processor passed via `logits_processor=`, the output streams agree
+token-for-token with the paper's stored streams under ±5 logit shifts.
 
 Requires `transformers>=4.40` and `torch>=2.0`. No `trust_remote_code`.
 
